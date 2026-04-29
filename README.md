@@ -58,6 +58,18 @@ Generates an annotated blog-style write-up from a presentation's slides and vide
 
 **Use when:** creating a blog post or write-up from a recorded presentation.
 
+### 💬 youtube-live-chat
+
+Downloads live chat messages from YouTube videos using yt-dlp. Supports output with or without timestamps.
+
+**Use when:** fetching live chat or chat replay from a YouTube live stream or past stream.
+
+### 🗣️ discussion-commenter
+
+Posts Q&A entries from markdown writeups as individual comments to a GitHub Discussion. Each `## ` section in the writeup becomes a separate comment, prefixed with a date.
+
+**Use when:** posting Q&A content from a markdown writeup file to a GitHub Discussion thread.
+
 ## Installation
 
 Install all skills using the [`skills`](https://www.npmjs.com/package/skills) CLI:
@@ -78,4 +90,6 @@ npx skills add pamelafox/presentation-skills/extract-transcript
 npx skills add pamelafox/presentation-skills/fetch-slides
 npx skills add pamelafox/presentation-skills/outline-slides
 npx skills add pamelafox/presentation-skills/generate-writeup
+npx skills add pamelafox/presentation-skills/youtube-live-chat
+npx skills add pamelafox/presentation-skills/discussion-commenter
 ```
