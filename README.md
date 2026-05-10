@@ -1,6 +1,12 @@
 # 🎤 Presentation Skills
 
-A collection of agent skills for working with presentations.
+A collection of [agent skills](https://agentskills.io/home) for working with presentations.
+
+## Table of Contents
+
+- [Skills](#skills)
+- [Installing with npx skills CLI](#installing-with-npx-skills-cli)
+- [Installing with gh CLI](#installing-with-gh-cli)
 
 ## Skills
 
@@ -78,6 +84,8 @@ Posts Q&A entries from markdown writeups as individual comments to a GitHub Disc
 
 ## Installation
 
+### Installing with npx skills CLI
+
 Install all skills using the [`skills`](https://www.npmjs.com/package/skills) CLI:
 
 ```sh
@@ -99,4 +107,35 @@ npx skills add pamelafox/presentation-skills/outline-slides
 npx skills add pamelafox/presentation-skills/generate-writeup
 npx skills add pamelafox/presentation-skills/youtube-live-chat
 npx skills add pamelafox/presentation-skills/discussion-commenter
+```
+
+### Installing with gh CLI
+
+Install skills using the [GitHub CLI](https://github.blog/changelog/2026-04-16-manage-agent-skills-with-github-cli/):
+
+```sh
+gh skill install pamelafox/presentation-skills
+```
+
+Or install individual skills:
+
+```sh
+gh skill install pamelafox/presentation-skills pdf-to-markdown
+gh skill install pamelafox/presentation-skills make-revealjs-presentation
+gh skill install pamelafox/presentation-skills review-presentation
+gh skill install pamelafox/presentation-skills capture-video-frames
+gh skill install pamelafox/presentation-skills convert-slides-to-images
+gh skill install pamelafox/presentation-skills extract-slide-text
+gh skill install pamelafox/presentation-skills extract-transcript
+gh skill install pamelafox/presentation-skills fetch-slides
+gh skill install pamelafox/presentation-skills outline-slides
+gh skill install pamelafox/presentation-skills generate-writeup
+gh skill install pamelafox/presentation-skills youtube-live-chat
+gh skill install pamelafox/presentation-skills discussion-commenter
+```
+
+You can also target a specific agent when installing with `gh`:
+
+```sh
+gh skill install pamelafox/presentation-skills make-revealjs-presentation --agent claude-code
 ```
