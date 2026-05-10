@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Talk Title Template</title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.1.0/dist/reset.css">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.1.0/dist/reveal.css">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.1.0/dist/theme/simple.css" id="theme">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/a11y-light.min.css">
+		<style>
+		:root {
+			--deck-ink: #000;
+			--deck-heading: #000;
+			--deck-page: #fff;
+			--deck-border: #bdbdbd;
+		}
+
+		.reveal {
+			background: var(--deck-page);
+			font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+			color: var(--deck-ink);
+		}
+
+		.reveal .slides section {
+			text-align: left;
+			padding-top: 0;
+		}
+
+		.reveal .slides section > h3:first-child,
+		.reveal .slides section > h2:first-child {
+			margin-top: 0;
+		}
+
+		.reveal h1,
+		.reveal h2,
+		.reveal h3 {
+			font-family: inherit;
+			color: var(--deck-heading);
+			background: none;
+			display: block;
+			padding: 6px 0;
+			text-transform: none;
+			letter-spacing: normal;
+			font-weight: 700;
+			-webkit-text-stroke: 0;
+			text-shadow: none;
+		}
+
+		.reveal h1 { font-size: 2.2em; }
+		.reveal h2 { font-size: 1.8em; }
+		.reveal h3 { font-size: 1.6em; }
+
+		.reveal p,
+		.reveal li,
+		.reveal td,
+		.reveal th {
+			font-size: 1em;
+			line-height: 1.45;
+		}
+
+		.reveal a,
+		.reveal a:hover,
+		.reveal a:visited {
+			color: revert;
+			text-decoration: revert;
+		}
+
+		.reveal strong {
+			color: var(--deck-heading);
+		}
+
+		.reveal code {
+			font-size: 0.84em;
+			padding: 0.08em 0.26em;
+			border-radius: 0.3em;
+			background: #f3f3f3;
+		}
+
+		.reveal pre code {
+			padding: 0;
+			background: transparent;
+			font-size: 1em;
+			line-height: 1.45;
+		}
+
+		.reveal pre {
+			width: 100%;
+			max-width: none;
+			margin: 0;
+			padding: 12px 16px;
+			box-sizing: border-box;
+			border: 1px solid var(--deck-border);
+			background: #fff;
+			box-shadow: none;
+		}
+
+		.reveal .code-example-link {
+			margin-top: 8px;
+			font-size: 0.72em;
+		}
+
+		.no-code-badge .code-badge {
+			display: none;
+		}
+
+		.reveal ul.tight li,
+		.reveal ol.tight li {
+			margin-bottom: 0.35em;
+		}
+
+		.reveal .lead {
+			font-size: 0.95em;
+			max-width: 860px;
+		}
+
+		.reveal section.heading-only {
+			display: flex !important;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			text-align: center;
+			height: 100%;
+			min-height: 720px;
+			padding: 0 72px;
+			box-sizing: border-box;
+		}
+
+		.reveal section.heading-only h1,
+		.reveal section.heading-only h2,
+		.reveal section.heading-only h3,
+		.reveal section.heading-only p,
+		.reveal section.heading-only li {
+			color: #000;
+		}
+
+		.reveal section.heading-only h1::after,
+		.reveal section.heading-only h2::after,
+		.reveal section.heading-only h3::after {
+			content: "";
+			display: block;
+			width: 80px;
+			height: 6px;
+			border-radius: 999px;
+			margin: 18px auto 0;
+			background: #000;
+		}
+		</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+
+				<section class="heading-only">
+					<p>Conference Name · Month Year</p>
+					<h1 style="font-size: 1.92em;">Talk Title</h1>
+					<p style="font-size: 0.9em; max-width: 760px; margin-top: 16px;">A one-line promise for the audience. Replace this with the outcome people should expect by the end of the talk.</p>
+					<h3 style="margin-top: 42px;">Your Name</h3>
+					<p style="font-size: 0.72em; opacity: 0.92;">Role · Company · website.example</p>
+					<aside class="notes">
+						Open by stating the audience problem, the payoff, and how the talk is structured.
+					</aside>
+				</section>
+
+				<section>
+					<h3>Agenda</h3>
+					<ul class="tight">
+						<li><strong>Context:</strong> Why this topic matters right now and what changed since the audience last looked at it.</li>
+						<li><strong>Approach:</strong> The core model, architecture, or process you want people to understand.</li>
+						<li><strong>Execution:</strong> Evidence, demo, rollout plan, or practical guidance they can apply immediately.</li>
+					</ul>
+				</section>
+
+				<section class="heading-only">
+					<h2>Main Section Title</h2>
+					<p style="font-size: 0.86em; max-width: 720px;">Use these divider slides to reset the room between major sections.</p>
+				</section>
+
+				<section>
+					<h3>State one strong idea per slide</h3>
+					<p class="lead">The best slides in this deck style are crisp and declarative. Lead with the claim, then support it with three or four pieces of evidence rather than a wall of text.</p>
+					<ul class="tight">
+						<li>Start with the decision, not the backstory.</li>
+						<li>Use a short subtitle only when the title needs context.</li>
+						<li>Keep slides readable from the back of a room and from a recording.</li>
+						<li>Put the nuanced detail in speaker notes, not on-screen.</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Show tradeoffs side by side</h3>
+					<p><strong>Option A</strong></p>
+					<ul class="tight">
+						<li>Best when you need speed or simplicity.</li>
+						<li>Lower upfront cost and less coordination.</li>
+						<li>Leaves more edge cases for later.</li>
+					</ul>
+					<p><strong>Option B</strong></p>
+					<ul class="tight">
+						<li>Better when safety, scale, or repeatability matter.</li>
+						<li>Takes more design work up front.</li>
+						<li>Produces cleaner long-term operating costs.</li>
+					</ul>
+				</section>
+
+				<section class="no-code-badge">
+					<h3>Code slide</h3>
+					<pre><code class="language-js" data-trim data-noescape>
+function explainOutcome(input) {
+  const summary = summarize(input);
+  const evidence = collectEvidence(input);
+
+  return {
+    message: summary,
+    proofPoints: evidence.slice(0, 3)
+  };
+}
+					</code></pre>
+					<p class="code-example-link"><a target="_blank" href="filename.html">🔗 Full example: filename.html</a></p>
+				</section>
+
+				<section>
+					<h3>Demo framing slide</h3>
+					<p>Use a plain slide like this to set up a live walkthrough.</p>
+					<ul class="tight">
+						<li>What is already configured before the demo starts.</li>
+						<li>What success looks like by the end of the sequence.</li>
+						<li>What to say if the demo needs to be skipped.</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Thank you</h3>
+					<p>Slides:<br><a target="_blank" href="https://example.com/slides">example.com/slides</a></p>
+					<p>Code or references:<br><a target="_blank" href="https://example.com/repo">example.com/repo</a></p>
+					<p>Find me online:</p>
+					<table style="width: 60%; float: left; font-size: 28px;">
+						<tbody>
+							<tr><td>Website</td><td><a target="_blank" href="https://example.com">example.com</a></td></tr>
+							<tr><td>GitHub</td><td><a target="_blank" href="https://github.com/your-handle">github.com/your-handle</a></td></tr>
+							<tr><td>LinkedIn</td><td><a target="_blank" href="https://linkedin.com/in/your-handle">linkedin.com/in/your-handle</a></td></tr>
+							<tr><td>Other</td><td><a target="_blank" href="https://social.example/@you">social.example/@you</a></td></tr>
+						</tbody>
+					</table>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/plugin/highlight/highlight.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/reveal.js-menu@2.1.0/menu.js"></script>
+		<script>
+			Reveal.initialize({
+				width: 1280,
+				height: 720,
+				hash: true,
+				center: false,
+				slideNumber: true,
+				showNotes: false,
+				margin: 0,
+				preloadIframes: true,
+				autoPlayMedia: true,
+				plugins: [RevealHighlight, RevealMenu],
+				pdfSeparateFragments: true
+			});
+		</script>
+	</body>
+</html>

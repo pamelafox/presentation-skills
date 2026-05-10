@@ -10,6 +10,12 @@ Converts PDF and other document formats (PowerPoint, Word, Excel) to Markdown us
 
 **Use when:** converting a PDF/PPTX/DOCX to Markdown, extracting text from a document, or reading/parsing document content.
 
+### 🎞️ make-revealjs-presentation
+
+Creates or updates a RevealJS HTML presentation using the repository's bundled slide template.
+
+**Use when:** starting a new RevealJS talk deck, creating HTML slides from an outline, or reusing the repository's presentation template for a new conference talk.
+
 ### 🔍 review-presentation
 
 Reviews presentation slides for accuracy and consistency with the code samples in the repository.
@@ -82,6 +88,7 @@ Or install individual skills:
 
 ```sh
 npx skills add pamelafox/presentation-skills/pdf-to-markdown
+npx skills add pamelafox/presentation-skills/make-revealjs-presentation
 npx skills add pamelafox/presentation-skills/review-presentation
 npx skills add pamelafox/presentation-skills/capture-video-frames
 npx skills add pamelafox/presentation-skills/convert-slides-to-images
