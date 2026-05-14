@@ -70,6 +70,12 @@ Generates an annotated blog-style write-up from a presentation's slides and vide
 
 **Use when:** creating a blog post or write-up from a recorded presentation.
 
+### 📝 youtube-description
+
+Generates a `youtube_description.md` with a brief intro, relevant links, and clickable `MM:SS`/`H:MM:SS` timestamps for each question.
+
+**Use when:** creating a plain-text YouTube description from a recording, with timestamp lines that YouTube auto-links.
+
 ### 💬 youtube-live-chat
 
 Downloads live chat messages from YouTube videos using yt-dlp. Supports output with or without timestamps.
@@ -105,6 +111,7 @@ npx skills add pamelafox/presentation-skills/extract-transcript
 npx skills add pamelafox/presentation-skills/fetch-slides
 npx skills add pamelafox/presentation-skills/outline-slides
 npx skills add pamelafox/presentation-skills/generate-writeup
+npx skills add pamelafox/presentation-skills/youtube-description
 npx skills add pamelafox/presentation-skills/youtube-live-chat
 npx skills add pamelafox/presentation-skills/discussion-commenter
 ```
@@ -130,6 +137,7 @@ gh skill install pamelafox/presentation-skills extract-transcript
 gh skill install pamelafox/presentation-skills fetch-slides
 gh skill install pamelafox/presentation-skills outline-slides
 gh skill install pamelafox/presentation-skills generate-writeup
+gh skill install pamelafox/presentation-skills youtube-description
 gh skill install pamelafox/presentation-skills youtube-live-chat
 gh skill install pamelafox/presentation-skills discussion-commenter
 ```
