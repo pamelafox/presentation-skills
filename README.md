@@ -40,6 +40,12 @@ Converts a PDF file into individual PNG images (one per slide) using poppler's `
 
 **Use when:** converting PDF slides to images, splitting a PDF into per-slide PNGs.
 
+### 🖼️ thumbnail-of-pptx
+
+Captures a thumbnail image of a slide from a OneDrive/Office presentation link by opening the PowerPoint web viewer in a headless browser and screenshotting the slide canvas. Works even when the PPTX itself is not downloadable.
+
+**Use when:** making a thumbnail from a PPTX, screenshotting a title slide, or generating a talk thumbnail from OneDrive-hosted slides.
+
 ### 📝 extract-slide-text
 
 Extracts text from each page of a PDF into a structured markdown file using `pdftotext`.
@@ -106,6 +112,7 @@ npx skills add pamelafox/presentation-skills/make-revealjs-presentation
 npx skills add pamelafox/presentation-skills/review-presentation
 npx skills add pamelafox/presentation-skills/capture-video-frames
 npx skills add pamelafox/presentation-skills/convert-slides-to-images
+npx skills add pamelafox/presentation-skills/thumbnail-of-pptx
 npx skills add pamelafox/presentation-skills/extract-slide-text
 npx skills add pamelafox/presentation-skills/extract-transcript
 npx skills add pamelafox/presentation-skills/fetch-slides
@@ -132,6 +139,7 @@ gh skill install pamelafox/presentation-skills make-revealjs-presentation
 gh skill install pamelafox/presentation-skills review-presentation
 gh skill install pamelafox/presentation-skills capture-video-frames
 gh skill install pamelafox/presentation-skills convert-slides-to-images
+gh skill install pamelafox/presentation-skills thumbnail-of-pptx
 gh skill install pamelafox/presentation-skills extract-slide-text
 gh skill install pamelafox/presentation-skills extract-transcript
 gh skill install pamelafox/presentation-skills fetch-slides
