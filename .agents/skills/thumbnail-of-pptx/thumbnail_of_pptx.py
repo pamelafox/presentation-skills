@@ -62,35 +62,37 @@ def capture_thumbnail(
 
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
-        page = browser.new_page(
-            viewport={"width": 1600, "height": 1000},
-            device_scale_factor=scale,
-        )
-        logger.info("Opening %s", url)
-        # aka.ms short links redirect to the real OneDrive viewer URL; Playwright
-        # follows the redirects for us.
-        page.goto(url, wait_until="networkidle", timeout=90000)
-        # The viewer streams the slide in after load; give it time to paint.
-        page.wait_for_timeout(wait_ms)
+        try:
+            page = browser.new_page(
+                viewport={"width": 1600, "height": 1000},
+                device_scale_factor=scale,
+            )
+            logger.info("Opening %s", url)
+            # aka.ms short links redirect to the real OneDrive viewer URL;
+            # Playwright follows the redirects for us.
+            page.goto(url, wait_until="networkidle", timeout=90000)
+            # The viewer streams the slide in after load; give it time to paint.
+            page.wait_for_timeout(wait_ms)
 
-        frame = find_viewer_frame(page)
+            frame = find_viewer_frame(page)
 
-        if slide > 1:
-            logger.info("Advancing to slide %d", slide)
+            if slide > 1:
+                logger.info("Advancing to slide %d", slide)
+                canvas = frame.query_selector("canvas")
+                if canvas:
+                    canvas.click()
+                for _ in range(slide - 1):
+                    frame.press("body", "ArrowRight")
+                    page.wait_for_timeout(1200)
+
             canvas = frame.query_selector("canvas")
-            if canvas:
-                canvas.click()
-            for _ in range(slide - 1):
-                frame.press("body", "ArrowRight")
-                page.wait_for_timeout(1200)
+            if canvas is None:
+                raise RuntimeError("No slide canvas found in the viewer frame.")
 
-        canvas = frame.query_selector("canvas")
-        if canvas is None:
+            canvas.screenshot(path=str(output_path))
+        finally:
+            # Always close Chromium, even if navigation or rendering failed.
             browser.close()
-            raise RuntimeError("No slide canvas found in the viewer frame.")
-
-        canvas.screenshot(path=str(output_path))
-        browser.close()
 
     logger.info("Saved thumbnail to %s", output_path)
 
