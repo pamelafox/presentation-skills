@@ -12,8 +12,8 @@ Create an image from a text description, save it to the user's requested locatio
 
 ## Requirements
 
-Use a `.env` file in the current directory or one of its parents:
-
+- Python 3.10+.
+- A `.env` file in the current directory or one of its parents:
 ```dotenv
 AZURE_API_KEY=your-key
 AZURE_IMAGE_ENDPOINT=https://your-resource.services.ai.azure.com/mai/v1/images/generations
