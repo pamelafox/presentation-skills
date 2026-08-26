@@ -76,6 +76,12 @@ Downloads live chat messages from YouTube videos using yt-dlp. Supports output w
 
 **Use when:** fetching live chat or chat replay from a YouTube live stream or past stream.
 
+### 🎨 generate-images-mai
+
+Generates bitmap images from text prompts with Microsoft MAI-Image-2.5 through the Azure AI image generations API.
+
+**Use when:** creating an image, visual asset, photograph, background, poster, thumbnail, or concept art.
+
 ### 🗣️ discussion-commenter
 
 Posts Q&A entries from markdown writeups as individual comments to a GitHub Discussion. Each `## ` section in the writeup becomes a separate comment, prefixed with a date.
@@ -106,6 +112,7 @@ npx skills add pamelafox/presentation-skills/fetch-slides
 npx skills add pamelafox/presentation-skills/outline-slides
 npx skills add pamelafox/presentation-skills/generate-writeup
 npx skills add pamelafox/presentation-skills/youtube-live-chat
+npx skills add pamelafox/presentation-skills/generate-images-mai
 npx skills add pamelafox/presentation-skills/discussion-commenter
 ```
 
@@ -131,6 +138,7 @@ gh skill install pamelafox/presentation-skills fetch-slides
 gh skill install pamelafox/presentation-skills outline-slides
 gh skill install pamelafox/presentation-skills generate-writeup
 gh skill install pamelafox/presentation-skills youtube-live-chat
+gh skill install pamelafox/presentation-skills generate-images-mai
 gh skill install pamelafox/presentation-skills discussion-commenter
 ```
 
