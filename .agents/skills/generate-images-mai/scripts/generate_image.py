@@ -1,4 +1,12 @@
 #!/usr/bin/env python3
+# /// script
+# requires-python = ">=3.10"
+# dependencies = []
+# ///
+"""Generate an image with Microsoft MAI-Image-2.5 via the Azure AI image generations API.
+
+Requires AZURE_API_KEY and AZURE_IMAGE_ENDPOINT (or pass --endpoint).
+"""
 
 import argparse
 import base64
@@ -8,8 +16,6 @@ import sys
 from pathlib import Path
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
-
-
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Generate an image with Microsoft MAI-Image-2.5."
