@@ -10,9 +10,6 @@ from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
 
-DEFAULT_ENDPOINT = "https://model-releases-proj-resource.services.ai.azure.com/mai/v1/images/generations"
-
-
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Generate an image with Microsoft MAI-Image-2.5."
@@ -22,7 +19,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--width", type=positive_int, default=1024)
     parser.add_argument("--height", type=positive_int, default=1024)
     parser.add_argument("--model", default="MAI-Image-2.5")
-    parser.add_argument("--endpoint", help="Override AZURE_IMAGE_ENDPOINT")
+    parser.add_argument("--endpoint", help="Azure image generations endpoint")
     parser.add_argument("--env-file", type=Path, help="Path to a specific .env file")
     parser.add_argument("--force", action="store_true", help="Overwrite the output file")
     return parser.parse_args()
@@ -91,7 +88,15 @@ def main() -> int:
         print("Missing AZURE_API_KEY. Add it to your environment or .env file.", file=sys.stderr)
         return 2
 
-    endpoint = args.endpoint or os.environ.get("AZURE_IMAGE_ENDPOINT") or DEFAULT_ENDPOINT
+    endpoint = args.endpoint or os.environ.get("AZURE_IMAGE_ENDPOINT")
+    if not endpoint:
+        print(
+            "Missing AZURE_IMAGE_ENDPOINT. Add it to your environment or .env file, "
+            "or pass --endpoint.",
+            file=sys.stderr,
+        )
+        return 2
+
     output = args.output.expanduser().resolve()
     if output.exists() and not args.force:
         print(f"Output already exists: {output}. Use --force to replace it.", file=sys.stderr)

@@ -49,7 +49,7 @@ The script supports:
 - `--output`: output file path; defaults to `generated_image.png`.
 - `--width` and `--height`: positive integers; default to `1024`.
 - `--model`: model name; defaults to `MAI-Image-2.5`.
-- `--endpoint`: overrides `AZURE_IMAGE_ENDPOINT` for this invocation.
+- `--endpoint`: Azure image generations endpoint; overrides `AZURE_IMAGE_ENDPOINT`.
 - `--env-file`: loads a specific `.env` file instead of searching parent directories.
 - `--force`: permits replacing an existing output file.
 
@@ -57,7 +57,7 @@ Environment variables already present in the process take precedence over values
 
 ## Failure handling
 
-- Missing configuration: identify the missing variable and stop.
+- Missing configuration: identify `AZURE_API_KEY` or `AZURE_IMAGE_ENDPOINT` and stop.
 - HTTP authentication failure: tell the user to verify `AZURE_API_KEY` locally; never request the key in chat.
 - HTTP endpoint or deployment failure: report the status and sanitized API message, then verify the endpoint and model name.
 - Invalid or absent `b64_json`: do not create an output file; report the response-shape problem.
