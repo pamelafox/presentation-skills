@@ -1,165 +1,216 @@
-# 🎤 Presentation Skills
+# Presentation Skills
 
-A collection of [agent skills](https://agentskills.io/home) for working with presentations.
+Agent skills for presentations — PDFs, slide decks, YouTube recordings, RevealJS, image generation, and GitHub Discussions.
 
-## Table of Contents
+## Why these skills
 
-- [Skills](#skills)
-- [Installing with npx skills CLI](#installing-with-npx-skills-cli)
-- [Installing with gh CLI](#installing-with-gh-cli)
+These skills live in one repo under `.agents/skills/<name>/`. The install script symlinks each skill folder into your agent harness user-scope directory (`ln -sfn`, never copies). Edit a `SKILL.md` here and every project on the machine picks up the change. The same layout works across **omp**, **Claude Code**, **Codex**, and **Pi**, with `gh skill install` and `npx skills add` as registry fallbacks when you prefer package-manager installs.
 
-## Skills
+## The skills (15 + 1 task agent)
 
-### 📄 pdf-to-markdown
+| Skill | What it does | Requires |
+|---|---|---|
+| **pdf-to-markdown** | Convert PDF, PPTX, DOCX, or Excel to Markdown via Microsoft's `markitdown`. | `uv` / `uvx`, `markitdown` |
+| **convert-slides-to-images** | Split a PDF into per-slide PNGs (`slide_1.png`, …) with `pdftoppm`. | `uv`, `pdftoppm` (poppler) |
+| **extract-slide-text** | Extract per-page text from a PDF into `slide_ascii.md` via `pdftotext`. | `uv`, `pdftotext` (poppler) |
+| **make-revealjs-presentation** | Create or update a RevealJS HTML deck from the bundled template in `assets/`. | — |
+| **fetch-slides** | Download slides from a URL (PDF, PPTX, OneDrive, RevealJS) and produce `slides.pdf`. | `uv`, LibreOffice (PPTX), Playwright (RevealJS) |
+| **review-presentation** | Review slides for accuracy and consistency with repo code samples. | `pdf-to-markdown` skill |
+| **outline-slides** | Numbered one-sentence summary per slide image (optionally grounded on `slide_ascii.md`). | slide PNGs from `convert-slides-to-images` |
+| **thumbnail-of-pptx** | Screenshot a slide from a OneDrive/Office web viewer link as a clean 16:9 PNG. | `uv`, Playwright |
+| **extract-transcript** | Fetch a timestamped transcript from a YouTube video. | `uv` |
+| **capture-video-frames** | Download a YouTube video, extract frames at an interval, describe each via the `describe-frame` agent. | `uv`, `yt-dlp`, `ffmpeg`, `describe-frame` agent |
+| **youtube-description** | Generate `youtube_description.md` with intro, links, and clickable timestamps. | — |
+| **youtube-live-chat** | Download live chat replay from a YouTube video via yt-dlp. | `uv`, `yt-dlp` |
+| **generate-writeup** | Orchestrate slides → images → transcript → outline → annotated write-up. | skills above as needed |
+| **generate-images-mai** | Generate or edit bitmap images via Microsoft MAI-Image-2.5 (Azure AI). | Python 3.10+, `AZURE_API_KEY`, `AZURE_IMAGE_ENDPOINT` |
+| **discussion-commenter** | Post Q&A sections from a markdown writeup as GitHub Discussion comments. | `uv`, `gh` (authenticated) |
+| **describe-frame** *(task agent)* | Describe a single video frame or compare speaker-face quality between two frames. Used by `capture-video-frames`. | image-viewing tool (`read` / `viewImage`) |
 
-Converts PDF and other document formats (PowerPoint, Word, Excel) to Markdown using [Microsoft's markitdown](https://github.com/microsoft/markitdown) package.
+## Quick install
 
-**Use when:** converting a PDF/PPTX/DOCX to Markdown, extracting text from a document, or reading/parsing document content.
-
-### 🎞️ make-revealjs-presentation
-
-Creates or updates a RevealJS HTML presentation using the repository's bundled slide template.
-
-**Use when:** starting a new RevealJS talk deck, creating HTML slides from an outline, or reusing the repository's presentation template for a new conference talk.
-
-### 🔍 review-presentation
-
-Reviews presentation slides for accuracy and consistency with the code samples in the repository.
-
-**Use when:** you want feedback on your slides — checking for errors, inconsistencies, or areas that need clarification relative to the repo's code.
-
-### 🎞️ capture-video-frames
-
-Captures frames from a YouTube video at a regular interval, produces a manifest mapping filenames to timestamps, and describes each frame using the `describe-frame` subagent.
-
-**Use when:** extracting video frames, capturing screenshots from YouTube, or doing frame-by-frame video analysis.
-
-### 🖼️ convert-slides-to-images
-
-Converts a PDF file into individual PNG images (one per slide) using poppler's `pdftoppm` command.
-
-**Use when:** converting PDF slides to images, splitting a PDF into per-slide PNGs.
-
-### 🖼️ thumbnail-of-pptx
-
-Captures a thumbnail image of a slide from a OneDrive/Office presentation link by opening the PowerPoint web viewer in a headless browser and screenshotting the slide canvas. Works even when the PPTX itself is not downloadable.
-
-**Use when:** making a thumbnail from a PPTX, screenshotting a title slide, or generating a talk thumbnail from OneDrive-hosted slides.
-
-### 📝 extract-slide-text
-
-Extracts text from each page of a PDF into a structured markdown file using `pdftotext`.
-
-**Use when:** getting the text content of PDF slides, producing a `slide_ascii.md` ground-truth file.
-
-### 🎙️ extract-transcript
-
-Extracts a timestamped transcript from a YouTube video using the YouTube Transcript API.
-
-**Use when:** fetching a video transcript, transcribing a YouTube video, getting YouTube captions.
-
-### 📥 fetch-slides
-
-Fetches presentation slides from a URL and converts them to PDF. Supports direct PDF URLs, PPTX URLs, OneDrive sharing links, and RevealJS HTML presentations.
-
-**Use when:** downloading slides from a URL, converting PPTX to PDF, fetching RevealJS or OneDrive slides.
-
-### 🗂️ outline-slides
-
-Generates a numbered outline of presentation slides with one-sentence summaries per slide.
-
-**Use when:** summarizing slides, creating a slide outline, describing slide images.
-
-### ✍️ generate-writeup
-
-Generates an annotated blog-style write-up from a presentation's slides and video recording. Orchestrates the full pipeline: fetching slides, converting to images, extracting transcript, generating chapters, outlining slides, and producing the final annotated markdown.
-
-**Use when:** creating a blog post or write-up from a recorded presentation.
-
-### 📝 youtube-description
-
-Generates a `youtube_description.md` with a brief intro, relevant links, and clickable `MM:SS`/`H:MM:SS` timestamps for each question.
-
-**Use when:** creating a plain-text YouTube description from a recording, with timestamp lines that YouTube auto-links.
-
-### 💬 youtube-live-chat
-
-Downloads live chat messages from YouTube videos using yt-dlp. Supports output with or without timestamps.
-
-**Use when:** fetching live chat or chat replay from a YouTube live stream or past stream.
-
-### 🎨 generate-images-mai
-
-Generates bitmap images from text prompts with Microsoft MAI-Image-2.5 through the Azure AI image generations API.
-
-**Use when:** creating an image, visual asset, photograph, background, poster, thumbnail, or concept art.
-
-### 🗣️ discussion-commenter
-
-Posts Q&A entries from markdown writeups as individual comments to a GitHub Discussion. Each `## ` section in the writeup becomes a separate comment, prefixed with a date.
-
-**Use when:** posting Q&A content from a markdown writeup file to a GitHub Discussion thread.
-
-## Installation
-
-### Installing with npx skills CLI
-
-Install all skills using the [`skills`](https://www.npmjs.com/package/skills) CLI:
+From the repo root (first run: `chmod +x install.sh` if needed):
 
 ```sh
-npx skills add pamelafox/presentation-skills
+./install.sh all
 ```
 
-Or install individual skills:
+This symlinks all 15 skill folders into each harness's user-scope skills directory. **Symlinks, not copies** — edits here propagate automatically.
+
+## From a local checkout
+
+The repo's native layout (`.agents/skills/<name>/SKILL.md`) is already a discoverable omp skills root when `cwd` points here. Three local-checkout paths, in order of how much state they touch:
+
+### Zero-install (this repo only)
 
 ```sh
-npx skills add pamelafox/presentation-skills/pdf-to-markdown
-npx skills add pamelafox/presentation-skills/make-revealjs-presentation
-npx skills add pamelafox/presentation-skills/review-presentation
-npx skills add pamelafox/presentation-skills/capture-video-frames
-npx skills add pamelafox/presentation-skills/convert-slides-to-images
-npx skills add pamelafox/presentation-skills/thumbnail-of-pptx
-npx skills add pamelafox/presentation-skills/extract-slide-text
-npx skills add pamelafox/presentation-skills/extract-transcript
-npx skills add pamelafox/presentation-skills/fetch-slides
-npx skills add pamelafox/presentation-skills/outline-slides
-npx skills add pamelafox/presentation-skills/generate-writeup
-npx skills add pamelafox/presentation-skills/youtube-description
-npx skills add pamelafox/presentation-skills/youtube-live-chat
-npx skills add pamelafox/presentation-skills/generate-images-mai
-npx skills add pamelafox/presentation-skills/discussion-commenter
+cd /path/to/presentation-skills
+omp
 ```
 
-### Installing with gh CLI
+omp's `agents` skill provider (priority 70) auto-discovers `.agents/skills/<name>/SKILL.md` from `cwd`. No install step.
 
-Install skills using the [GitHub CLI](https://github.blog/changelog/2026-04-16-manage-agent-skills-with-github-cli/):
+### Symlink once, use everywhere (recommended)
 
 ```sh
-gh skill install pamelafox/presentation-skills
+./install.sh omp         # all 15 skills → ~/.omp/agent/skills/<name> (symlinks)
+./install.sh omp pdf-to-markdown   # one skill
 ```
 
-Or install individual skills:
+omp discovers skills with `readdir`, which follows directory symlinks — the link at `~/.omp/agent/skills/<name>` resolves to this repo's folder, so every edit here propagates. See the next section for details.
+
+### `omp -e <dir>` (not recommended for this layout)
+
+`omp -e /path/to/presentation-skills` is for plugin-style packages with a `package.json#omp.extensions` entry. The bare `.agents/skills/<name>/SKILL.md` layout here is treated as **skills**, not extensions — `omp -e` won't pick them up. Use the symlink path above instead.
+
+> Background: omp skill discovery (`docs/skills.md`) and extension loading (`docs/extension-loading.md`) are separate subsystems. Symlinking into `~/.omp/agent/skills/` is the documented local-checkout install.
+
+## Per-harness install
+
+### omp
 
 ```sh
-gh skill install pamelafox/presentation-skills pdf-to-markdown
-gh skill install pamelafox/presentation-skills make-revealjs-presentation
-gh skill install pamelafox/presentation-skills review-presentation
-gh skill install pamelafox/presentation-skills capture-video-frames
-gh skill install pamelafox/presentation-skills convert-slides-to-images
-gh skill install pamelafox/presentation-skills thumbnail-of-pptx
-gh skill install pamelafox/presentation-skills extract-slide-text
-gh skill install pamelafox/presentation-skills extract-transcript
-gh skill install pamelafox/presentation-skills fetch-slides
-gh skill install pamelafox/presentation-skills outline-slides
-gh skill install pamelafox/presentation-skills generate-writeup
-gh skill install pamelafox/presentation-skills youtube-description
-gh skill install pamelafox/presentation-skills youtube-live-chat
-gh skill install pamelafox/presentation-skills generate-images-mai
-gh skill install pamelafox/presentation-skills discussion-commenter
+./install.sh omp
 ```
 
-You can also target a specific agent when installing with `gh`:
+Targets `~/.omp/agent/skills/<name>` — one whole-folder symlink per skill. omp's skills provider uses `readdir`, which follows directory symlinks, so new files inside a linked skill folder are discovered without re-running the installer.
+
+omp also auto-discovers `<cwd>/.agents/skills/<name>/SKILL.md` (priority 70) when your working directory is this repo.
+
+The **`describe-frame`** task agent lives at `.github/agents/describe-frame.md`. omp discovers it from the repo cwd (`.github/agents/` group, priority 70). For use in other projects, `./install.sh omp` also symlinks it to `~/.omp/agent/agents/describe-frame.md` when `~/.omp/agent` already exists.
+
+### Claude Code
 
 ```sh
-gh skill install pamelafox/presentation-skills make-revealjs-presentation --agent claude-code
+./install.sh claude
 ```
+
+Targets `~/.claude/skills/<name>`. Claude Code discovers skills as subdirectories of `~/.claude/skills/` each containing a `SKILL.md`.
+
+### Codex
+
+```sh
+./install.sh codex
+```
+
+Targets `${CODEX_HOME:-$HOME/.codex}/skills/<name>`. If `~/.codex` does not exist yet, set `CODEX_HOME` to your Codex config directory and rerun:
+
+```sh
+export CODEX_HOME=/path/to/your/codex-home
+./install.sh codex
+```
+
+### Pi
+
+```sh
+./install.sh pi
+```
+
+Targets `${PI_CODING_AGENT_DIR:-$HOME/.pi}/skills/<name>`. Same pattern if `~/.pi` is not present:
+
+```sh
+export PI_CODING_AGENT_DIR=/path/to/your/pi-home
+./install.sh pi
+```
+
+## Manual install (no script)
+
+Set `REPO` to this checkout, then symlink one skill per harness:
+
+```sh
+REPO=/path/to/presentation-skills
+
+# omp
+ln -sfn "$REPO/.agents/skills/pdf-to-markdown" ~/.omp/agent/skills/pdf-to-markdown
+
+# Claude Code
+ln -sfn "$REPO/.agents/skills/pdf-to-markdown" ~/.claude/skills/pdf-to-markdown
+
+# Codex
+ln -sfn "$REPO/.agents/skills/pdf-to-markdown" "${CODEX_HOME:-$HOME/.codex}/skills/pdf-to-markdown"
+
+# Pi
+ln -sfn "$REPO/.agents/skills/pdf-to-markdown" "${PI_CODING_AGENT_DIR:-$HOME/.pi}/skills/pdf-to-markdown"
+```
+
+Repeat for each skill name, or loop:
+
+```sh
+for d in "$REPO/.agents/skills"/*/; do
+  name=$(basename "$d")
+  ln -sfn "$d" ~/.omp/agent/skills/"$name"
+done
+```
+
+## Package-manager fallbacks
+
+These install from upstream registries and typically **copy** files rather than symlink. Prefer `./install.sh` when you want live edits in this repo to propagate.
+
+```sh
+# GitHub CLI — pull from this repo's origin (evilbuck) or the upstream mirror (pamelafox)
+gh skill install evilbuck/presentation-skills
+gh skill install evilbuck/presentation-skills pdf-to-markdown --agent claude-code
+
+# npx skills — same registries
+npx skills add evilbuck/presentation-skills
+npx skills add evilbuck/presentation-skills/pdf-to-markdown
+```
+
+The upstream mirror `pamelafox/presentation-skills` is a regular fetch target; swap `evilbuck` → `pamelafox` in any of the commands above if you want the upstream copy.
+
+## Updating
+
+Edit any file under `.agents/skills/<name>/` — linked installs see the change immediately. When you **add a new skill folder**, rerun `./install.sh` (or `./install.sh <harness>`) so the new symlink is created.
+
+## Uninstalling
+
+```sh
+./install.sh uninstall
+```
+
+Removes only the symlinks this script created (skill folders and the omp `describe-frame` agent link). It does not delete anything under `.agents/skills/` in the repo.
+
+## Verify
+
+Check symlink status across harnesses:
+
+```sh
+./install.sh status
+```
+
+Confirm omp sees installed skills:
+
+```sh
+omp -p "list every skill you have starting with pdf"
+```
+
+You should see `pdf-to-markdown`. Smoke-test a skill:
+
+```sh
+omp -p "use pdf-to-markdown to convert slides.pdf to markdown"
+```
+
+When working inside this repo without user-scope install, omp also picks up skills from `.agents/skills/` and the `describe-frame` agent from `.github/agents/` via cwd discovery.
+
+## Adding a new skill
+
+1. Create `.agents/skills/<name>/SKILL.md` (and any helper scripts).
+2. Run `./install.sh` (or `./install.sh <harness>`).
+3. Verify with `./install.sh status` and a harness-specific list command.
+
+No copy step — the symlink points at your new folder.
+
+## Requirements
+
+- **uv** — runs PEP 723 helper scripts (`uv run …`)
+- **pdftoppm** / **pdftotext** — poppler (`brew install poppler` on macOS)
+- **yt-dlp** and **ffmpeg** — video download and frame extraction
+- **Playwright** — `uv run playwright install chromium` for `fetch-slides` and `thumbnail-of-pptx`
+- **LibreOffice** — PPTX conversion in `fetch-slides` (`brew install --cask libreoffice` on macOS)
+- **markitdown** — pulled via `uvx 'markitdown[pdf]'` for `pdf-to-markdown`
+- **gh** — authenticated GitHub CLI for `discussion-commenter`
+- **AZURE_API_KEY** and **AZURE_IMAGE_ENDPOINT** — Azure AI image API for `generate-images-mai`
+
+## License
+
+MIT. See [LICENSE](LICENSE).
