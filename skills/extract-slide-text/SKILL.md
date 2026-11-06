@@ -12,7 +12,7 @@ argument-hint: <pdf_path> <output_path> [images_dir]
 Run the [extract_slide_text.py](./extract_slide_text.py) script to extract the text content of each PDF page into a structured markdown file:
 
 ```bash
-uv run .agents/skills/extract-slide-text/extract_slide_text.py <pdf_path> <output_path> [images_dir]
+uv run extract_slide_text.py <pdf_path> <output_path> [images_dir]
 ```
 
 ## Arguments

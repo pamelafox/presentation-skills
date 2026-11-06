@@ -16,19 +16,19 @@ Download live chat messages from YouTube videos using yt-dlp.
 Run the script with a YouTube URL or video ID:
 
 ```bash
-uv run .agents/skills/youtube-live-chat/get_live_chat.py "VIDEO_URL_OR_ID"
+uv run get_live_chat.py "VIDEO_URL_OR_ID"
 ```
 
 With timestamps:
 
 ```bash
-uv run .agents/skills/youtube-live-chat/get_live_chat.py "VIDEO_URL_OR_ID" --timestamps
+uv run get_live_chat.py "VIDEO_URL_OR_ID" --timestamps
 ```
 
 Output to a specific file:
 
 ```bash
-uv run .agents/skills/youtube-live-chat/get_live_chat.py "VIDEO_URL_OR_ID" --output chat.txt
+uv run get_live_chat.py "VIDEO_URL_OR_ID" --output chat.txt
 ```
 
 ## Supported URL Formats

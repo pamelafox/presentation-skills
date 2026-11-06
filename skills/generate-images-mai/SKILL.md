@@ -35,7 +35,7 @@ Never read, print, return, commit, or embed the API key in generated files, comm
 Text-to-image generation:
 
 ```bash
-python3 .agents/skills/generate-images-mai/scripts/generate_image.py \
+python3 scripts/generate_image.py \
   --prompt "A photograph of a red fox in an autumn forest" \
   --width 1024 \
   --height 1024 \
@@ -45,7 +45,7 @@ python3 .agents/skills/generate-images-mai/scripts/generate_image.py \
 Image-to-image edit:
 
 ```bash
-python3 .agents/skills/generate-images-mai/scripts/generate_image.py \
+python3 scripts/generate_image.py \
   --prompt "Replace the lawn with a native wildflower garden while preserving the house and paths" \
   --input-image garden.png \
   --output edited_garden.png
