@@ -96,9 +96,9 @@ Generates bitmap images from text prompts with Microsoft MAI-Image-2.5 through t
 
 ### 📣 make-speaker-promo-cards
 
-Creates social media promo graphics (LinkedIn, X, Bluesky) listing all of a speaker's conference sessions, with the day(s) of each session and small co-speaker headshots. Can pull sessions, co-speakers, and headshots automatically from a Microsoft event speaker page (Ignite, Build). Renders four styles: portrait tiles, portrait list, landscape, and a compact casual card.
+Creates social media promo graphics (LinkedIn, X, Bluesky) for speakers at Microsoft events (Ignite, Build). It lists all of a speaker's sessions with the day(s) of each session and small co-speaker headshots, pulling everything from the event's speaker page. Renders four styles: portrait tiles, portrait list, landscape, and a compact casual card.
 
-**Use when:** making a "join me at" speaker card, promoting your conference sessions on social media, or creating matching promo graphics for co-speakers.
+**Use when:** making a "join me at Microsoft Ignite/Build" speaker card, promoting your Microsoft event sessions on social media, or creating matching promo graphics for co-speakers.
 
 ### 🗣️ discussion-commenter
 

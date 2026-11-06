@@ -1,24 +1,25 @@
 ---
 name: make-speaker-promo-cards
 description: >-
-  Create social media promo graphics (LinkedIn, X, Bluesky) that list every session a speaker is giving
-  at a conference, with small co-speaker headshots and the day(s) of each session.
-  Can pull sessions, co-speakers, and headshots from a Microsoft event speaker page (Ignite, Build).
-  USE FOR: speaker card, session promo graphic, "join me at" image, conference social post image,
-  LinkedIn/Twitter graphic for my talks, promo for co-speakers.
-argument-hint: <speaker page URL or list of sessions> [speaker name]
+  Create social media promo graphics (LinkedIn, X, Bluesky) for speakers at Microsoft events
+  (Microsoft Ignite, Microsoft Build), listing every session a speaker is giving with the day(s)
+  and small co-speaker headshots. Pulls sessions, co-speakers, and headshots from the event's
+  speaker page (e.g. ignite.microsoft.com/en-US/speakers/<id>).
+  USE FOR: Ignite/Build speaker card, session promo graphic, "join me at Microsoft Ignite" image,
+  LinkedIn/Twitter graphic for my Microsoft event talks, promo for co-speakers.
+argument-hint: <Microsoft event speaker page URL> [extra sessions]
 ---
 
-# Make speaker promo cards
+# Make speaker promo cards for Microsoft events
 
-Generate PNG promo cards that show **all** of a speaker's sessions at an event, not just one.
+Generate PNG promo cards for Microsoft events (Ignite, Build) that show **all** of a speaker's sessions, not just one.
 Each session shows its code, type, title, day(s), and the co-speakers' headshots.
 
 ## Workflow
 
 ### 1. Gather the session data
 
-**Microsoft event speaker page** (e.g. `https://ignite.microsoft.com/en-US/speakers/<id>`): run the fetcher.
+Run the fetcher on the speaker's Microsoft event page (e.g. `https://ignite.microsoft.com/en-US/speakers/<id>`).
 It calls the site's public catalog APIs, groups repeated deliveries of the same session code, works out the day(s) in the event's time zone, and downloads headshots.
 
 ```bash
@@ -27,7 +28,7 @@ uv run .agents/skills/make-speaker-promo-cards/scripts/fetch_microsoft_event_spe
 
 This writes `<work_dir>/config.json` and `<work_dir>/headshots/`.
 
-**Any other event:** write `config.json` by hand. Use [assets/example_config.json](./assets/example_config.json) as the template. You can also scrape the speaker page with Playwright and record its JSON network responses.
+If the fetcher fails, for example because the catalog API changed or the session isn't published yet, write `config.json` by hand. Use [assets/example_config.json](./assets/example_config.json) as the template.
 
 ### 2. Confirm the session list with the speaker
 
