@@ -1,0 +1,38 @@
+{
+  "event": "Contoso DevCon",
+  "headline": "Join me at Contoso DevCon",
+  "subheadline": "3 sessions on building AI agents",
+  "footer": "Find session times at devcon.contoso.com",
+  "accent": "#C03BC4",
+  "announce": "",
+  "owner": "alex",
+  "people": {
+    "alex": {"name": "Alex Rivera", "title": "Principal Developer Advocate, Contoso", "photo": "headshots/alex.jpg"},
+    "sam": {"name": "Sam Chen", "title": "Senior Program Manager, Contoso", "photo": "https://example.com/sam.jpg"},
+    "jordan": {"name": "Jordan Lee", "title": "Software Engineer, Contoso", "photo": ""}
+  },
+  "sessions": [
+    {
+      "code": "WRK101",
+      "type": "Pre-day Workshop",
+      "title": "Build your first agent: A hands-on workshop",
+      "dates": "Mon, Nov 16",
+      "speakers": ["alex", "sam"]
+    },
+    {
+      "code": "LAB200",
+      "type": "Lab",
+      "title": "Grounding agents in your own data",
+      "dates": "Tue, Nov 17 · Wed, Nov 18 · Fri, Nov 20",
+      "short_dates": "Nov 17, 18 & 20",
+      "speakers": ["alex", "jordan"]
+    },
+    {
+      "code": "BRK300",
+      "type": "Breakout",
+      "title": "Agents in production: Lessons learned",
+      "dates": "Thu, Nov 19",
+      "speakers": ["alex"]
+    }
+  ]
+}

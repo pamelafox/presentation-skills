@@ -94,6 +94,12 @@ Generates bitmap images from text prompts with Microsoft MAI-Image-2.5 through t
 
 **Use when:** creating an image, visual asset, photograph, background, poster, thumbnail, or concept art.
 
+### 📣 make-speaker-promo-cards
+
+Creates social media promo graphics (LinkedIn, X, Bluesky) for speakers at Microsoft events (Ignite, Build). It lists all of a speaker's sessions with the day(s) of each session and small co-speaker headshots, pulling everything from the event's speaker page. Renders four styles: portrait tiles, portrait list, landscape, and a compact casual card.
+
+**Use when:** making a "join me at Microsoft Ignite/Build" speaker card, promoting your Microsoft event sessions on social media, or creating matching promo graphics for co-speakers.
+
 ### 🗣️ discussion-commenter
 
 Posts Q&A entries from markdown writeups as individual comments to a GitHub Discussion. Each `## ` section in the writeup becomes a separate comment, prefixed with a date.
@@ -127,6 +133,7 @@ npx skills add pamelafox/presentation-skills/generate-writeup
 npx skills add pamelafox/presentation-skills/youtube-description
 npx skills add pamelafox/presentation-skills/youtube-live-chat
 npx skills add pamelafox/presentation-skills/generate-images-mai
+npx skills add pamelafox/presentation-skills/make-speaker-promo-cards
 npx skills add pamelafox/presentation-skills/discussion-commenter
 ```
 
@@ -155,6 +162,7 @@ gh skill install pamelafox/presentation-skills generate-writeup
 gh skill install pamelafox/presentation-skills youtube-description
 gh skill install pamelafox/presentation-skills youtube-live-chat
 gh skill install pamelafox/presentation-skills generate-images-mai
+gh skill install pamelafox/presentation-skills make-speaker-promo-cards
 gh skill install pamelafox/presentation-skills discussion-commenter
 ```
 
