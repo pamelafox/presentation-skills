@@ -15,7 +15,7 @@ argument-hint: <youtube_url> <output_dir> [--interval SECONDS]
 Run the [capture_video_frames.py](./capture_video_frames.py) script:
 
 ```bash
-uv run skills/capture-video-frames/capture_video_frames.py <youtube_url> <output_dir> [--interval SECONDS]
+uv run capture_video_frames.py <youtube_url> <output_dir> [--interval SECONDS]
 ```
 
 ### Arguments

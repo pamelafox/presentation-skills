@@ -12,7 +12,7 @@ argument-hint: <pdf_path> <output_dir>
 Run the [convert_slides_to_images.py](./convert_slides_to_images.py) script to split a PDF into individual PNG images:
 
 ```bash
-uv run skills/convert-slides-to-images/convert_slides_to_images.py <pdf_path> <output_dir>
+uv run convert_slides_to_images.py <pdf_path> <output_dir>
 ```
 
 ## Arguments

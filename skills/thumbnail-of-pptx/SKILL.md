@@ -17,7 +17,7 @@ Run the [thumbnail_of_pptx.py](./thumbnail_of_pptx.py) script to capture a slide
 thumbnail from a OneDrive/Office presentation link:
 
 ```bash
-uv run skills/thumbnail-of-pptx/thumbnail_of_pptx.py <url> <output_path>
+uv run thumbnail_of_pptx.py <url> <output_path>
 ```
 
 ## Arguments
