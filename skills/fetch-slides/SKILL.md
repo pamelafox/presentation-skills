@@ -13,7 +13,7 @@ argument-hint: <url> <output_dir>
 Run the [fetch_slides.py](./fetch_slides.py) script to download and convert slides:
 
 ```bash
-uv run .agents/skills/fetch-slides/fetch_slides.py <url> <output_dir>
+uv run skills/fetch-slides/fetch_slides.py <url> <output_dir>
 ```
 
 ## Arguments

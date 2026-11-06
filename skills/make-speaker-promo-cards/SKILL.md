@@ -23,7 +23,7 @@ Run the fetcher on the speaker's Microsoft event page (e.g. `https://ignite.micr
 It calls the site's public catalog APIs, groups repeated deliveries of the same session code, works out the day(s) in the event's time zone, and downloads headshots.
 
 ```bash
-uv run .agents/skills/make-speaker-promo-cards/scripts/fetch_microsoft_event_speaker.py "<speaker_url>" <work_dir> [--tz America/Los_Angeles]
+uv run skills/make-speaker-promo-cards/scripts/fetch_microsoft_event_speaker.py "<speaker_url>" <work_dir> [--tz America/Los_Angeles]
 ```
 
 This writes `<work_dir>/config.json` and `<work_dir>/headshots/`.
@@ -44,7 +44,7 @@ Edit `config.json` to add the missing sessions or dates, and ask for missing co-
 ### 3. Render
 
 ```bash
-uv run .agents/skills/make-speaker-promo-cards/scripts/make_promo_cards.py <work_dir>/config.json <out_dir> [--owner KEY] [--style tiles list landscape compact]
+uv run skills/make-speaker-promo-cards/scripts/make_promo_cards.py <work_dir>/config.json <out_dir> [--owner KEY] [--style tiles list landscape compact]
 ```
 
 Output files are named `<owner>_<style>.png`. Each image's height is trimmed to fit its content.

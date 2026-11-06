@@ -39,7 +39,7 @@ Follow these steps in order. Cache all intermediate outputs in `<presentation_fo
 
 - If **Slides** in presentation.md is a URL, fetch and convert to PDF:
   ```bash
-  uv run .agents/skills/fetch-slides/fetch_slides.py <url> <presentation_folder>/outputs
+  uv run skills/fetch-slides/fetch_slides.py <url> <presentation_folder>/outputs
   ```
   This produces `slides.pdf` (and `slides_content.md` for RevealJS URLs).
 - If **slides** is a local file path (relative to the presentation folder), use it directly.
@@ -50,7 +50,7 @@ Follow these steps in order. Cache all intermediate outputs in `<presentation_fo
 Split the PDF into individual PNGs:
 
 ```bash
-uv run .agents/skills/convert-slides-to-images/convert_slides_to_images.py <pdf_path> <presentation_folder>/outputs/slide_images
+uv run skills/convert-slides-to-images/convert_slides_to_images.py <pdf_path> <presentation_folder>/outputs/slide_images
 ```
 
 Skip if `<presentation_folder>/outputs/slide_images/` already contains `slide_*.png` files.
@@ -61,7 +61,7 @@ Skip if `<presentation_folder>/outputs/slide_images/` already contains `slide_*.
 - If `<presentation_folder>/outputs/transcript.txt` exists, use the cached version.
 - Otherwise, extract from YouTube:
   ```bash
-  uv run .agents/skills/extract-transcript/extract_transcript.py <youtube_url> <presentation_folder>/outputs/transcript.txt
+  uv run skills/extract-transcript/extract_transcript.py <youtube_url> <presentation_folder>/outputs/transcript.txt
   ```
 
 ### Step 4: Generate video chapters
@@ -78,7 +78,7 @@ If `<presentation_folder>/outputs/chapters.txt` exists, use the cached version. 
 Extract the text content of each PDF page to provide ground truth for what each slide actually says. This prevents misidentifying embedded screenshots or demo captures as actual slide content.
 
 ```bash
-uv run .agents/skills/extract-slide-text/extract_slide_text.py <pdf_path> <presentation_folder>/outputs/slide_ascii.md <presentation_folder>/outputs/slide_images
+uv run skills/extract-slide-text/extract_slide_text.py <pdf_path> <presentation_folder>/outputs/slide_ascii.md <presentation_folder>/outputs/slide_images
 ```
 
 Skip if `<presentation_folder>/outputs/slide_ascii.md` already exists.

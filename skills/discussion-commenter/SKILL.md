@@ -12,7 +12,7 @@ Post Q&A entries from markdown writeups as individual comments to a GitHub Discu
 Run the script with the writeup file path, discussion URL, and date:
 
 ```bash
-uv run .agents/skills/discussion-commenter/post_qas.py \
+uv run skills/discussion-commenter/post_qas.py \
   "path/to/writeup.md" \
   "https://github.com/orgs/ORG/discussions/NUMBER" \
   "2026/01/06"

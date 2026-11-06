@@ -12,7 +12,7 @@ argument-hint: <youtube_url> [output_file]
 Run the [extract_transcript.py](./extract_transcript.py) script to fetch a timestamped transcript:
 
 ```bash
-uv run .agents/skills/extract-transcript/extract_transcript.py <youtube_url> [output_file]
+uv run skills/extract-transcript/extract_transcript.py <youtube_url> [output_file]
 ```
 
 ## Arguments
